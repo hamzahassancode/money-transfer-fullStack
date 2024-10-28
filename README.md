@@ -32,18 +32,19 @@ To build and run this project locally, ensure you have the following:
 ## API Controllers
 #### Account Controller
 
-Method	| Path	              | Description	                                                    
-------------- |--------------------|-----------------------------------------------------------------
-GET	| api/accounts	      | Get all accounts 	                                       
-GET	| api/accounts/{account_number}	      | Get account by account number  	                                                              
+Method	| Path	                         | Description	                                                    
+------------- |-------------------------------|-----------------------------------------------------------------
+GET	| v1/accounts	                  | Get all accounts 	                                       
+GET	| v1/accounts/{account_number}	 | Get account by account number  	                                                              
 
 
 #### transfer Controller
 
-Method	| Path	              | Description	                                                    
-------------- |--------------------|-----------------------------------------------------------------
-GET	| api/transfers	     | Get all transfers list 	                                       
-POST	| api/transfers/	    | transfer money to beneficiary account	            
+Method	| Path	                    | Description	                                                    
+------------- |--------------------------|-----------------------------------------------------------------
+GET	| api/transfers	           | Get all transfers list 	                                       
+POST	| v1/transfers/	           | transfer money to beneficiary account	            
+POST	| v1/transfers/upload-csv	 | transfer bulk of transfer money             
 
 #### Notes
 - mySQL is used as a primary database.
