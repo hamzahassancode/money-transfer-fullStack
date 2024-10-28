@@ -1,0 +1,9 @@
+dependencies:
+- name: springmyapp
+  repository: file://./charts/postgres-helm
+  version: 0.1.0
+- name: postgresmyhelm
+  repository: file://./charts/springmyapp
+  version: 0.1.0
+digest: sha256:57e9596445a6d2551cae8b9419486f6331381d3b6b7b2d04149ee247904f755c
+generated: "2024-10-23T10:55:08.630531446+03:00"

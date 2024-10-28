@@ -1,0 +1,23 @@
+replicas: 1
+
+springApp: spring-boot-app
+
+springBoot:
+  image: "docker.io/hamzahassan0/springboot-cliq-transfer-jib"
+  tag: "latest-jib"
+  port: 8080
+  imagePullPolicy: Always
+  datasource:
+    url: "jdbc:postgresql://postgres-d-service:5432/cliq"
+    username: "postgres"
+    password: "root"
+
+
+ingress:
+  enabled: true
+  name: spring-boot-ingress
+  host: cliq.microk8s.com
+
+service:
+  name: spring-boot-app
+  port: 8080

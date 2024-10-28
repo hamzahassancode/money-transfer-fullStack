@@ -1,0 +1,11 @@
+databaseName: postgres-d
+replicas: 1
+
+postgres:
+  image: "postgres"
+  version: "14"
+  imagePullPolicy: IfNotPresent
+  port: 5432
+  db: "cliq"
+  user: "postgres"
+  password: "root"

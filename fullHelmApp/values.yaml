@@ -1,0 +1,13 @@
+springmyapp:
+  springBoot:
+    image: "docker.io/hamzahassan0/springboot-cliq-transfer-jib"
+    tag: "latest-jib"
+    port: 8080
+
+postgresmyhelm:
+  postgres:
+    image: "postgres"
+    version: "14"
+    db: "cliq"
+    user: "postgres"
+    password: "root"

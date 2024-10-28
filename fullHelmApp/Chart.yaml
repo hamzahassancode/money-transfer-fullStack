@@ -1,0 +1,8 @@
+apiVersion: v2
+name: parent-chart
+version: 0.1.0
+dependencies:
+  - name: springmyapp
+    version: 0.1.0
+  - name: postgres-helm
+    version: 0.1.0

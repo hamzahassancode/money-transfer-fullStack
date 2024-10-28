@@ -1,0 +1,38 @@
+stages:
+  - build
+  - docker
+  - deploy
+
+build-maven:
+  stage: build
+  image: maven:3.8.4-jdk-17
+  script:
+    - cd CliQ-transfers
+    - mvn clean package
+  artifacts:
+    paths:
+      - CliQ-transfers/target/*.jar
+
+
+docker-build:
+  stage: docker
+  image: maven:3.8.4-jdk-17
+  script:
+    - cd CliQ-transfers
+    - mvn compile jib:build -Djib.to.auth.username="$DOCKER_HUB_USER" -Djib.to.auth.password="$DOCKER_HUB_PASS" -Djib.to.tags="$CI_COMMIT_SHA"
+
+job_deploy:
+  stage: deploy
+  image: docker:20.10.7
+  services:
+    - docker:20.10.7-dind
+  variables:
+    CI_REGISTRY_IMAGE: "docker.io/hamzahassan0/springboot-cliq-transfer-jib"
+  script:
+    - echo hamza12345 | docker login -u hamzahassan0 --password-stdin $CI_REGISTRY
+    - docker images
+    - docker stop $(docker ps -aq) || true
+    - docker rm $(docker ps -aq) || true
+    - helm list -q | xargs -r helm uninstall
+    - helm install myapp ./fullHelmApp  --set springBoot.image=$CI_REGISTRY_IMAGE --set springBoot.tag=$CI_COMMIT_SHA
+

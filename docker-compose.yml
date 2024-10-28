@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  postgres-db1:
+    image: postgres:16
+    container_name: cliq-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: cliq
+    ports:
+      - "5432:5432"
+      -
+    networks:
+      - cliq-network
+
+  spring-app:
+    image: hamzahassan0/springboot-cliq-transfer-jib:latest-jib
+    container_name: cliq-spring
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db1:5432/cliq
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: root
+    depends_on:
+      - postgres-db1
+    networks:
+      - cliq-network
+
+  react-app:
+    image: hamzahassan0/cliq-full-stack1-react-app:latest
+    container_name: cliq-react
+    ports:
+      - "3000:3000"
+    networks:
+      - cliq-network
+
+
+networks:
+  cliq-network:
