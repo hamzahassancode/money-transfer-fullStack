@@ -87,7 +87,7 @@ POST	| v1/transfers/upload-csv	 | transfer bulk of transfer money
        ```bash 
           docker compose up
 
-    3. **Using helm **
+    3. **Using helm**
 
        If you have Kubernetes installed, use the following command to start the application:
 
