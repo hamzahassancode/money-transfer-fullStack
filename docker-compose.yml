@@ -9,12 +9,11 @@ services:
       POSTGRES_DB: cliq
     ports:
       - "5432:5432"
-      -
     networks:
       - cliq-network
 
   spring-app:
-    image: hamzahassan0/springboot-cliq-transfer-jib:latest-jib
+    image: hamzahassan0/money-transfer-csv:csv
     container_name: cliq-spring
     ports:
       - "8080:8080"
@@ -28,7 +27,7 @@ services:
       - cliq-network
 
   react-app:
-    image: hamzahassan0/cliq-full-stack1-react-app:latest
+    image: hamzahassan0/rect-with-csv:csv
     container_name: cliq-react
     ports:
       - "3000:3000"
